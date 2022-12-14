@@ -1,12 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <main class="container">
+      <section class="todo-wrapper">
+        <h1 class="todo-title">Today's Todo</h1>
+        <label for="description" class="show-msg"></label>
+        <form id="todo-form">
+          <input
+            type="text"
+            autocomplete="off"
+            required
+            min="5"
+            max="255"
+            placeholder="Enter todo description"
+            name="description"
+            id="description"
+            class="todo-box"
+          />
+          <button type="submit" class="btn-submit"></button>
+        </form>
+        <ul class="items-wrapper"></ul>
+        <button class="delete-completed">Clear all completed</button>
+      </section>
+    </main>
+  </body>
 </html>
