@@ -37,14 +37,7 @@
   .todo-title {
     margin: 15px;
     font-size: 1.7rem;
-  }
-  
-  .todo-title::after {
-    content: "";
-    width: 50px;
-    display: block;
-    margin: 10px auto;
-    border-bottom: 2px solid #470255;
+    text-align: center;
   }
   
   /* Add new todo form start form here */
@@ -61,7 +54,7 @@
   }
   
   .input-group:focus-visible {
-    outline-color: #a60ae4;
+    outline-color: #42274d;
   }
   
   .invalid {
