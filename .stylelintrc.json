@@ -2,7 +2,6 @@
   "extends": ["stylelint-config-standard"],
   "plugins": ["stylelint-scss", "stylelint-csstree-validator"],
   "rules": {
-    "import/extensions": "off",
     "at-rule-no-unknown": [
       true,
       {
@@ -17,5 +16,5 @@
     ],
     "csstree/validator": true
   },
-  "ignoreFiles": ["build/**", "dist/**", "**/reset*.css", "**/bootstrap*.css", "**/*.js", "**/*.jsx","webpack.config.js"]
+  "ignoreFiles": ["build/**", "dist/**", "**/reset*.css", "**/bootstrap*.css", "**/*.js", "**/*.jsx"]
 }
