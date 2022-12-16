@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 export const validateForm = (
   str, required = false, minLength = 0, maxLength = 0, specialChar = true,
 ) => {

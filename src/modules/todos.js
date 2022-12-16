@@ -1,14 +1,15 @@
-import { validateForm } from "./utils.js";
-import { todoContainer, formInput, showMsg } from "./domSelector.js";
+/* eslint-disable linebreak-style */
+import { validateForm } from './utils.js';
+import { todoContainer, formInput, showMsg } from './domSelector.js';
 
 // Import necessary assets form source
-import threeDotIcon from "../assets/three-dot-24.png";
-import deleteIcon from "../assets/trash-24.png";
+import threeDotIcon from '../assets/three-dot-24.png';
+import deleteIcon from '../assets/trash-24.png';
 
 export default class Todos {
   constructor() {
-    if (localStorage.getItem("todos")) {
-      this.todos = JSON.parse(localStorage.getItem("todos"));
+    if (localStorage.getItem('todos')) {
+      this.todos = JSON.parse(localStorage.getItem('todos'));
     } else {
       this.todos = [];
     }
@@ -35,58 +36,58 @@ export default class Todos {
     });
 
     this.todos = [...todoArr];
-    localStorage.setItem("todos", JSON.stringify(this.todos));
+    localStorage.setItem('todos', JSON.stringify(this.todos));
   };
 
   // Render todo list
   render = () => {
-    todoContainer.innerHTML = "";
-    showMsg.innerText = "";
-    showMsg.classList.remove("form-error");
+    todoContainer.innerHTML = '';
+    showMsg.innerText = '';
+    showMsg.classList.remove('form-error');
     this.sortAndSave();
     if (this.todos.length > 0) {
       this.todos.forEach((todo) => {
         // create todo item
-        const todoItem = document.createElement("li");
+        const todoItem = document.createElement('li');
         todoItem.id = todo.index;
-        todoItem.className = "todo-item";
-        todoItem.setAttribute("draggable", true);
+        todoItem.className = 'todo-item';
+        todoItem.setAttribute('draggable', true);
 
         // drag and drop function;
-        todoItem.addEventListener("dragstart", () => {
-          todoItem.classList.add("dragging");
+        todoItem.addEventListener('dragstart', () => {
+          todoItem.classList.add('dragging');
         });
 
-        todoItem.addEventListener("dragend", () => {
-          todoItem.classList.remove("dragging");
+        todoItem.addEventListener('dragend', () => {
+          todoItem.classList.remove('dragging');
         });
 
         // todo checkbox
-        const checkbox = document.createElement("input");
-        checkbox.setAttribute("type", "checkbox");
-        checkbox.id = "todo-compleate";
+        const checkbox = document.createElement('input');
+        checkbox.setAttribute('type', 'checkbox');
+        checkbox.id = 'todo-compleate';
 
-        checkbox.addEventListener("change", (e) => {
+        checkbox.addEventListener('change', (e) => {
           this.onCompleate(e);
         });
 
         // todo description
-        const todoDes = document.createElement("p");
-        todoDes.className = "todo-des";
+        const todoDes = document.createElement('p');
+        todoDes.className = 'todo-des';
         todoDes.innerText = todo.description;
 
         if (todo.completed) {
-          checkbox.setAttribute("checked", "yes");
-          todoDes.classList.add("todo-compleated");
+          checkbox.setAttribute('checked', 'yes');
+          todoDes.classList.add('todo-compleated');
         }
 
         // todo Three dot button
-        const threeDotButton = document.createElement("button");
-        threeDotButton.className = "btn-three-dot";
+        const threeDotButton = document.createElement('button');
+        threeDotButton.className = 'btn-three-dot';
         threeDotButton.innerHTML = `<img src="${threeDotIcon}" alt="...">`;
 
         // add event on three icon for edit and delete.
-        threeDotButton.addEventListener("click", (e) => {
+        threeDotButton.addEventListener('click', (e) => {
           this.onClickTodoDes(e);
         });
 
@@ -120,15 +121,15 @@ export default class Todos {
     // Check if form has error or not
 
     if (isValid.isError === true && isValid.msg.length >= 0) {
-      showMsg.classList.add("form-error");
+      showMsg.classList.add('form-error');
       showMsg.textContent = isValid.msg;
-      formInput.classList.add("invalid");
+      formInput.classList.add('invalid');
     } else {
       // if form is empty add a new todo
-      showMsg.classList.remove("form-error");
-      showMsg.textContent = "";
-      formInput.classList.remove("invalid");
-      formInput.value = "";
+      showMsg.classList.remove('form-error');
+      showMsg.textContent = '';
+      formInput.classList.remove('invalid');
+      formInput.value = '';
       const index = this.todos.length + 1 || 1;
       const todo = {
         description,
@@ -163,11 +164,11 @@ export default class Todos {
       specialChar
     );
     if (isValid.isError === true && isValid.msg.length > 0) {
-      showMsg.classList.add("form-error");
+      showMsg.classList.add('form-error');
       showMsg.textContent = isValid.msg;
-      e.target.classList.add("invalid-edit");
+      e.target.classList.add('invalid-edit');
     } else {
-      e.target.classList.remove("invalid-edit");
+      e.target.classList.remove('invalid-edit');
       const index = e.target.parentElement.id;
       const newArr = [...this.todos];
       const indx = newArr.findIndex((item) => index === item.index.toString());
@@ -183,43 +184,43 @@ export default class Todos {
   onClickTodoDes = (e) => {
     // target.outerHTML = document.createElement('textarea');
     const parent = e.target.parentElement.parentElement;
-    const getTotodes = parent.querySelector(".todo-des").innerText;
-    parent.innerHTML = "";
+    const getTotodes = parent.querySelector('.todo-des').innerText;
+    parent.innerHTML = '';
 
     // todo checkbox
-    const checkbox = document.createElement("input");
-    checkbox.setAttribute("type", "checkbox");
-    checkbox.id = "todo-compleate";
+    const checkbox = document.createElement('input');
+    checkbox.setAttribute('type', 'checkbox');
+    checkbox.id = 'todo-compleate';
 
-    checkbox.addEventListener("change", (e) => {
+    checkbox.addEventListener('change', (e) => {
       this.onCompleate(e);
     });
 
     // todo description
-    const todoEditInput = document.createElement("input");
-    todoEditInput.setAttribute("type", "text");
-    todoEditInput.setAttribute("value", getTotodes);
-    todoEditInput.className = "todo-edit-input";
+    const todoEditInput = document.createElement('input');
+    todoEditInput.setAttribute('type', 'text');
+    todoEditInput.setAttribute('value', getTotodes);
+    todoEditInput.className = 'todo-edit-input';
 
     // Add event on keypress in the textarea
-    todoEditInput.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") {
+    todoEditInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
         e.preventDefault();
         this.edit(e);
       } else {
-        showMsg.classList.remove("form-error");
-        showMsg.innerText = "";
-        e.target.classList.remove("invalid-edit");
+        showMsg.classList.remove('form-error');
+        showMsg.innerText = '';
+        e.target.classList.remove('invalid-edit');
       }
     });
 
     // todo Delete dot button
-    const deleteTodo = document.createElement("button");
-    deleteTodo.className = "btn-delete";
+    const deleteTodo = document.createElement('button');
+    deleteTodo.className = 'btn-delete';
     deleteTodo.innerHTML = `<img src="${deleteIcon}" alt="X">`;
 
     // adding event on delete icon
-    deleteTodo.addEventListener("click", () => {
+    deleteTodo.addEventListener('click', () => {
       const index = parent.id;
       this.delete(index);
     });
