@@ -115,7 +115,7 @@ export default class Todos {
       required,
       minLength,
       maxLength,
-      specialChar
+      specialChar,
     );
 
     // Check if form has error or not
@@ -161,7 +161,7 @@ export default class Todos {
       required,
       minLength,
       maxLength,
-      specialChar
+      specialChar,
     );
     if (isValid.isError === true && isValid.msg.length > 0) {
       showMsg.classList.add('form-error');
